@@ -14,7 +14,7 @@ module.exports = (sequelize) => {
       defaultValue: DataTypes.UUIDV4
     },
     description:{
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     platforms:{
@@ -31,7 +31,7 @@ module.exports = (sequelize) => {
 
     },
     rating:{
-      type: DataTypes.INTEGER,
+      type: DataTypes.FLOAT,
       allowNull: false,
     }, 
     

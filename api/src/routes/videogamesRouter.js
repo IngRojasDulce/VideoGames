@@ -1,7 +1,7 @@
 const { Router} =require("express");
 
  const {
-   getvideogamesHandler,
+   getVideogamesHandler,
 //   getUserIdHandler,
 //   createUserHandler,
 //   deleteUserHandler,
@@ -9,7 +9,7 @@ const { Router} =require("express");
 
  const videogamesRouter = Router();
 
- videogamesRouter.get("/", getvideogamesHandler)
+ videogamesRouter.get("/", getVideogamesHandler)
 // //   .get("/:id", getUserIdHandler)
 //   .post("/", createUserHandler)
 //   .delete("/:id", deleteUserHandler);
