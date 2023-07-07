@@ -1,18 +1,10 @@
 const { Router} =require("express");
 
-// const {
-//   getUserHandler,
-//   getUserIdHandler,
-//   createUserHandler,
-//   deleteUserHandler,
-// } = require("../handlers/usersHandler");
+ const {getGenresHandler}= require('../handlers/genresHandler');
 
  const genresRouter = Router();
 
-//  genresRouter
-//   .get("/", getUserHandler)
-//   .get("/:id", getUserIdHandler)
-//   .post("/", createUserHandler)
-//   .delete("/:id", deleteUserHandler);
+ genresRouter.get("/", getGenresHandler)
+
 
  module.exports = genresRouter;

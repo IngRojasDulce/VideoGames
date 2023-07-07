@@ -1,29 +1,71 @@
-const { Gender, Videogame } = require("../db");
+const { Genre, Videogame } = require("../db");
 require('dotenv').config();
 const { API_KEY } = process.env;
 const axios = require("axios");
  // const peticion = (await axios.get("https://api.rawg.io/api/games?key=750e69c276ea48e2935f6ee4a454204b")).data;
 
-const getAllVideogames = async () => {
-  //usuarios de la api
-  const peticion = (
-    await axios.get("https://api.rawg.io/api/games?key=750e69c276ea48e2935f6ee4a454204b")
-  ).data;
-
-  //en esta parte del codigo es donde mapeamos toda la data y formateamos la estructura de lo que viene en la api para generarlo de la forma que nosotros necesitamos y sea igual a como tambien lo tenemos en la db
+const videosgamesApi= async()=>{
+  const todo=[];
+ for(let i=1; i<6; i++){
+  const peticion = (await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=${i}`)).data;
   const apiMap = peticion.results.map((video) => {
     return {
+        id: video.id,
+        name: video.name,
+        description: video.description_raw,
+        platforms: video.platforms.map((platforms)=>{return platforms.platform.name}),
+        imagen: video.background_image,
+        landingDate: video.released,
+        rating: video.rating,
+        genres:video.genres.map(({ id, name }) => ({ id, name }))
+      };
+  })
+   todo.push(...apiMap);
+} return todo;
+};    
+
+const getAllVideogames = async(name) => {
+  
+  const allVideogamesApi =await videosgamesApi();
+  const allVideogamesBD=await Videogame.findAll();
+  const allVideogames =[...allVideogamesBD, ... allVideogamesApi ];
+  
+  if(!name) return allVideogames;
+  else{
+    const filterByName=allVideogames.filter(element => element.name.toLowerCase().includes(name.toLowerCase()));
+    if(!filterByName.length) throw new Error("El video juego ingresado no existe");
+  return filterByName.slice(0,15);
+  }
+};
+
+const getVideogamesBYid =async(id)=>{
+   if( isNaN(id)){
+    
+      const infoBD= await Videogame.findByPk(id);
+      return infoBD;
+  }
+  const video = (await axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`)).data;
+    return( {
           id: video.id,
           name: video.name,
-          //description: video.description,
+          description: video.description_raw,
           platforms: video.platforms.map((platforms)=>{return platforms.platform.name}),
           imagen: video.background_image,
           landingDate: video.released,
           rating: video.rating,
-        };
-  });
-  return apiMap;
+          genre : video.genres?.map(({ id, name }) => ({ id, name }))
+        });
 };
+
+const createVideogames=async(name,description, platforms, imagen, landingDate,rating, genre)=>{
+  const newVideogame= await Videogame.create({name,description, platforms, imagen, landingDate,rating}) 
+  const newGenre = await Genre.create({name: genre})
+  
+  return newVideogame;
+}
+
 module.exports = {
-  getAllVideogames 
+  getAllVideogames ,
+  getVideogamesBYid,
+  createVideogames
 };

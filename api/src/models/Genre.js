@@ -14,7 +14,7 @@ module.exports= (Sequelize)=>{
             validate: {
                 len: {
                   args: [2, 15],
-                  msg: "El nombre debe contener entre 5 y 10 caracteres",
+                  msg: "El nombre debe contener entre 2 y 10 caracteres",
                 },
               },
         }
