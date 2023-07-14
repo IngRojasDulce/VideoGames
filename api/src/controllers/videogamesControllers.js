@@ -17,7 +17,7 @@ const videosgamesApi= async()=>{
         imagen: video.background_image,
         landingDate: video.released,
         rating: video.rating,
-        genres:video.genres.map(({ id, name }) => ({ id, name }))
+        genres:video.genres.map(({name}) => ({name}))
       };
   })
    todo.push(...apiMap);
@@ -53,15 +53,24 @@ const getVideogamesBYid =async(id)=>{
           imagen: video.background_image,
           landingDate: video.released,
           rating: video.rating,
-          genre : video.genres?.map(({ id, name }) => ({ id, name }))
+          genre : video.genres?.map(({ name }) => ({ name }))
         });
 };
 
 const createVideogames=async(name,description, platforms, imagen, landingDate,rating, genre)=>{
-  const newVideogame= await Videogame.create({name,description, platforms, imagen, landingDate,rating}) 
-  const newGenre = await Genre.create({name: genre})
+const newVideogame= await Videogame.create({name,description, platforms, imagen, landingDate,rating}) 
+
+ genre.forEach(async (genre) => {
+  let dbGenre = await Genre.findAll({ where:{name: genre}});
+  if(dbGenre){
+     newVideogame.addGenre(dbGenre) 
+  }else{
+      throw Error('El genero ingresado no existe en la Bd');
+  }
   
-  return newVideogame;
+});
+
+return newVideogame
 }
 
 module.exports = {

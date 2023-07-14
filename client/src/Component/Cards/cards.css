@@ -1,0 +1,12 @@
+.card-main-cont{
+    text-align: center;
+
+}
+
+.cards-cont{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 2%;
+
+}

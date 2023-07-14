@@ -1,0 +1,10 @@
+.style-cont{
+    background-color: rgb(146, 145, 148) ;
+    border: solid 2px black;
+    border-radius: 10px;
+    width: 30%;
+    height: 30%;
+    padding: 1;
+    margin: 0.5%;
+
+}

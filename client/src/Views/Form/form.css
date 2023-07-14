@@ -1,0 +1,15 @@
+.form-cont{
+    background-color: aqua;
+    border: solid 11% blueviolet;
+    border-radius: 10%;
+    width: 30%;
+    display: flex;
+    text-align: left;
+    justify-content: center;
+    align-items: baseline;
+    flex-direction: column;
+}
+
+.form-input-cont{
+    margin:1%;
+}

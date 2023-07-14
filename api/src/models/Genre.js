@@ -10,13 +10,14 @@ module.exports= (Sequelize)=>{
         },
         name:{
             type:DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                len: {
-                  args: [2, 15],
-                  msg: "El nombre debe contener entre 2 y 10 caracteres",
-                },
-              },
+            
+            allowNull: false
+            // validate: {
+            //     len: {
+            //       args: [2, 15],
+            //       msg: "El nombre debe contener entre 2 y 10 caracteres",
+            //     },
+            //   },
         }
     },{ freezeTableName: true, timestamps: false })
 }

@@ -1,0 +1,18 @@
+.nav-cont{
+    background-color: blueviolet;
+    border: solid 1px blue;
+    height: 3rem;
+    display: flex;
+
+}
+.img-cont img{
+    width:3rem;
+}
+.link-cont{
+    display:flex;
+    width: 15rem;
+    justify-content: space-around;
+    align-items: center;
+    margin-left: 23rem;
+
+}
