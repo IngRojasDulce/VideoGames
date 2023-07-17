@@ -1,29 +1,30 @@
 import React, { useState } from 'react'
 import'./form.css'
-// import {useDispatch} from 'react-redux'
-// import { postVideogame } from '../../Redux/Actions';
+import {useDispatch} from 'react-redux'
+import { postVideogame } from '../../Redux/action';
+
 
 const Form = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const [input , setinput] = useState({
     name:"",
-    image:"",
+    imagen:"",
     description:"",
     platforms:"",
-    release_data:"",
+    landingDate:"",
     rating:"",
-    rengers:""
+    genre:""
   });
 
   const[errors,setErrors]=useState({
     name:"Nombre requerido",
-    image:"  Imagen requerida",
+    imagen:"  Imagen requerida",
     description:"Descripcion requerida",
     platforms:"Plataforma requerida",
-    release_data:"ingrese fecha de lanzamiento",
+    landingDate:"ingrese fecha de lanzamiento",
     rating:"Ingrese el rating",
-    rengers:"Seleccione el /los generos"
+    genre:"Seleccione el /los generos"
 
 
   });
@@ -32,9 +33,9 @@ const Form = () => {
       if(input.name!=="") setErrors({...errors,name:""})
       else setErrors({...errors, name:"Nombre requerido"})
     }
-    if(name==="image"){
-      if(input.image!=="")setErrors({...errors,image:""})
-      else setErrors({...errors, image:"Imagen requerida"})
+    if(name==="imagen"){
+      if(input.imagen!=="")setErrors({...errors,imagen:""})
+      else setErrors({...errors, imagen:"Imagen requerida"})
     }
     if(name==="description"){
       if(input.description!=="")setErrors({...errors,description:""})
@@ -44,29 +45,30 @@ const Form = () => {
       if(input.platforms!=="")setErrors({...errors,platforms:""})
       else setErrors({...errors, platforms:"Plataforma requerida"})
     }
-    if(name==="release_data"){
-      if(input.release_data!=="")setErrors({...errors,release_data:""})
-      else setErrors({...errors, release_data:"ingrese fecha de lanzamiento"})
+    if(name==="landingDate"){
+      if(input.landingDate!=="")setErrors({...errors,landingDate:""})
+      else setErrors({...errors, landingDate:"ingrese fecha de lanzamiento"})
     }
     if(name==="rating"){
       if(input.rating!=="")setErrors({...errors,rating:""})
       else setErrors({...errors, rating:"Ingrese el rating"})
     }
-    if(name==="genres"){
-      if(input.genres!=="")setErrors({...errors,genres:""})
-      else setErrors({...errors, genres:"Seleccione el /los generos"})
+    if(name==="genre"){
+      if(input.genre!=="")setErrors({...errors,genre:""})
+      else setErrors({...errors, genre:"Seleccione el /los generos"})
     }
   };
-  // const buttonDisabled =()=>{
-  //   let disabled=true;
-  //   for(let error in errors){
-  //     if(errors[error]==="") disabled= false;
-  //     else{
-  //       disabled = true;
-  //       break
-  //     }
-  //   }
-  // }
+  const buttonDisabled = ()=>{
+    let disabled=true;
+    for(let error in errors){
+      if(errors[error]==="") disabled= false;
+      else{
+        disabled = true;
+        break;
+      }
+    }
+    return disabled;
+  };
   const handleChange = (e)=>{
     setinput({
       ...input,
@@ -76,24 +78,24 @@ const Form = () => {
       ...input,
       [e.target.name]: e.target.value}, e.target.name)
   };
-  // const handlerSubmit =(event)=>{
-  //   event.preventDefault();
-  //   dispatch(postVideogame(input))
-  // }
+  const handlerSubmit =(event)=>{
+    event.preventDefault();
+    dispatch(postVideogame(input))
+  }
 
   
   return (
     <div className='form-cont'>
-      <form >
+      <form onSubmit={handlerSubmit}>{console.log(errors)}
         <div className='form-input-cont'>
           <label >Nombre</label>
           <input type='text' name='name' onChange={handleChange}></input>
           <p> {errors.name}</p>
         </div>
         <div className='form-input-cont'>
-          <label >Imagen</label>
-          <input type='text' name='image' onChange={handleChange}/>
-          <p> {errors.image}</p>
+          <label >imagenn</label>
+          <input type='text' name='imagen' onChange={handleChange}/>
+          <p> {errors.imagen}</p>
         </div>
 
         <div className='form-input-cont'>
@@ -110,8 +112,8 @@ const Form = () => {
 
         <div className='form-input-cont'>
           <label >Fecha de lanzamiento</label>
-          <input type='text' name='release_data' onChange={handleChange}/>
-          <p> {errors.release_data}</p>
+          <input type="date" name='landingDate' onChange={handleChange}/>
+          <p> {errors.landingDate}</p>
         </div>
 
         <div className='form-input-cont'>
@@ -122,11 +124,11 @@ const Form = () => {
 
         <div className='form-input-cont'>
           <label >Generos</label>
-          <input type='text' name='genres' onChange={handleChange}/>
-          <p> {errors.genres}</p>
+          <input type='text' name='genre' onChange={handleChange}/>
+          <p> {errors.genre}</p>
         </div>
-        <input type='submit'/>
-
+        <input  type='submit' disabled={buttonDisabled()}/>
+        
       </form>
 
     </div>

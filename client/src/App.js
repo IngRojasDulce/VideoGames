@@ -1,5 +1,5 @@
 import './App.css';
-import{ Route, BrowserRouter, Switch} from 'react-router-dom'; 
+import{ Route, Switch} from 'react-router-dom'; 
 import React from 'react';
 import Home from './Views/Home/Home';
 import Landing from './Views/Landing/Landing';
@@ -9,7 +9,7 @@ import Navbar from './Component/Navbar/Navbar';
 
 function App() {
   return (
-    <BrowserRouter> 
+   
     <div className="App">
       <Route path= "*" component ={Navbar}/>
       <Switch>
@@ -19,7 +19,7 @@ function App() {
         <Route path ="/details:id" component = {Details}/>
       </Switch>
     </div>
-    </BrowserRouter>
+    
   );
 }
 

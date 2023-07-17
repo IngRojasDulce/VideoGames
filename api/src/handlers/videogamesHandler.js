@@ -28,8 +28,8 @@ const getVideogamesIdHandler =async (req, res)=>{
     }
 };
 const createVideogamesHandler= async( req,res)=>{
-    const {name,description, platforms, imagen, landingDate,rating, genre }= req.body;
-    const response = await createVideogames(name,description, platforms, imagen, landingDate,rating, genre);
+    const {name,description, platforms, imagen, landingDate,rating, genres }= req.body;
+    const response = await createVideogames(name,description, platforms, imagen, landingDate,rating, genres);
         res.status(201).json(response);
     try {
         

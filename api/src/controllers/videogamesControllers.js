@@ -17,7 +17,7 @@ const videosgamesApi= async()=>{
         imagen: video.background_image,
         landingDate: video.released,
         rating: video.rating,
-        genres:video.genres.map(({name}) => ({name}))
+        genres:video.genres.map((genre) => genre.name)
       };
   })
    todo.push(...apiMap);
@@ -30,7 +30,7 @@ const getAllVideogames = async(name) => {
   const allVideogamesBD=await Videogame.findAll();
   const allVideogames =[...allVideogamesBD, ... allVideogamesApi ];
   
-  if(!name) return allVideogames;
+  if(!name) return allVideogames.slice(0,100);
   else{
     const filterByName=allVideogames.filter(element => element.name.toLowerCase().includes(name.toLowerCase()));
     if(!filterByName.length) throw new Error("El video juego ingresado no existe");
@@ -53,25 +53,35 @@ const getVideogamesBYid =async(id)=>{
           imagen: video.background_image,
           landingDate: video.released,
           rating: video.rating,
-          genre : video.genres?.map(({ name }) => ({ name }))
+          genres : video.genres?.map(({ name }) => ({ name }))
         });
 };
 
-const createVideogames=async(name,description, platforms, imagen, landingDate,rating, genre)=>{
-const newVideogame= await Videogame.create({name,description, platforms, imagen, landingDate,rating}) 
-
- genre.forEach(async (genre) => {
-  let dbGenre = await Genre.findAll({ where:{name: genre}});
-  if(dbGenre){
-     newVideogame.addGenre(dbGenre) 
-  }else{
-      throw Error('El genero ingresado no existe en la Bd');
+const createVideogames = async (name, description, platforms, imagen, landingDate, rating, genres) => {
+  const newVideogame = await Videogame.create({ name, description, platforms, imagen, landingDate, rating });
+  let dbGenre
+  for (const genre of genres) {
+     dbGenre = await Genre.findAll({ where: { name: genre } });
+    if (dbGenre.length > 0) {
+      await newVideogame.addGenre(dbGenre);
+    } else {
+      throw new Error('El género ingresado no existe en la base de datos.')
+    }
   }
-  
-});
+  const nuevo = {
+          name: newVideogame.name,
+          description: newVideogame.description,
+          platforms: newVideogame.platforms,
+          imagen: newVideogame.imagen,
+          landingDate: newVideogame.landingDate,
+          rating: newVideogame.rating,
+          genres : [dbGenre[0].dataValues.name]
+  }
+ 
+  return nuevo;
+};
 
-return newVideogame
-}
+
 
 module.exports = {
   getAllVideogames ,
