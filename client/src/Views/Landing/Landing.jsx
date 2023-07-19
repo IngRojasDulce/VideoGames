@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
+import './landing.css'; // Importa el archivo CSS aquí
 
 const Landing = () => {
   return (
-    <div>Landing</div>
-  )
+    <div className='divStyle'>
+    
+    </div>
+  );
 }
 
-export default Landing
+export default Landing;

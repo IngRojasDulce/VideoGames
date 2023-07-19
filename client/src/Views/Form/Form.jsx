@@ -93,7 +93,7 @@ const Form = () => {
           <p> {errors.name}</p>
         </div>
         <div className='form-input-cont'>
-          <label >imagenn</label>
+          <label >Imagen</label>
           <input type='text' name='imagen' onChange={handleChange}/>
           <p> {errors.imagen}</p>
         </div>
