@@ -23,16 +23,37 @@ const videosgamesApi= async()=>{
    todo.push(...apiMap);
 } return todo;
 };    
-
+ 
+const nameApi= async(name)=>{
+  const todo=[];
+ 
+  const peticion = (await axios.get(`https://api.rawg.io/api/games?search=${name}&key=${API_KEY}`)).data;
+  const apiMap = peticion.results.map((video) => {
+    return {
+        id: video.id,
+        name: video.name,
+        description: video.description_raw,
+        platforms: video.platforms.map((platforms)=>{return platforms.platform.name}),
+        imagen: video.background_image,
+        landingDate: video.released,
+        rating: video.rating,
+        genres:video.genres.map((genre) => genre.name)
+      };
+  })
+   todo.push(...apiMap);
+ return todo;
+};  
 const getAllVideogames = async(name) => {
   
   const allVideogamesApi =await videosgamesApi();
   const allVideogamesBD=await Videogame.findAll();
   const allVideogames =[...allVideogamesBD, ... allVideogamesApi ];
+  const nameA =await nameApi(name);
   
   if(!name) return allVideogames.slice(0,100);
-  else{
-    const filterByName=allVideogames.filter(element => element.name.toLowerCase().includes(name.toLowerCase()));
+  else{ 
+   
+    const filterByName= [...allVideogamesBD, ... nameA ].filter(element => element.name.toLowerCase().includes(name.toLowerCase()));
     if(!filterByName.length) throw new Error("El video juego ingresado no existe");
   return filterByName.slice(0,15);
   }
@@ -40,7 +61,6 @@ const getAllVideogames = async(name) => {
 
 const getVideogamesBYid =async(id)=>{
    if( isNaN(id)){
-    
       const infoBD= await Videogame.findByPk(id);
       return infoBD;
   }
