@@ -30,10 +30,15 @@ module.exports = (sequelize) => {
       allowNull: false,
 
     },
-    rating:{
+    rating: {
       type: DataTypes.FLOAT,
       allowNull: false,
-    }, 
+      validate: {
+        isFloat: true,
+      min: 0, // Valor mínimo permitido es 0
+      max: 7, // Valor máximo permitido es 7
+      },
+    },
     
   },{ freezeTableName: true, timestamps: false });
 };

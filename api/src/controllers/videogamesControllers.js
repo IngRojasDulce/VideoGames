@@ -79,15 +79,19 @@ const getVideogamesBYid =async(id)=>{
 
 const createVideogames = async (name, description, platforms, imagen, landingDate, rating, genres) => {
   const newVideogame = await Videogame.create({ name, description, platforms, imagen, landingDate, rating });
-  let dbGenre
-  for (const genre of genres) {
+  let dbGenre=[]
+  genres.forEach(async(genre) => {
+    
+   
      dbGenre = await Genre.findAll({ where: { name: genre } });
+
+     console.log(dbGenre);
     if (dbGenre.length > 0) {
       await newVideogame.addGenre(dbGenre);
     } else {
       throw new Error('El género ingresado no existe en la base de datos.')
     }
-  }
+  })
   const nuevo = {
           name: newVideogame.name,
           description: newVideogame.description,
@@ -95,7 +99,7 @@ const createVideogames = async (name, description, platforms, imagen, landingDat
           imagen: newVideogame.imagen,
           landingDate: newVideogame.landingDate,
           rating: newVideogame.rating,
-          genres : [dbGenre[0].dataValues.name]
+          genres : dbGenre?.map((elem)=>elem.name)
   }
  
   return nuevo;
