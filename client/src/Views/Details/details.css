@@ -1,0 +1,18 @@
+.de-main-cont{
+    text-align: center;
+
+}
+
+.de-cont {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 2%;
+    background: linear-gradient(to bottom right, #ffffff, #cccccc);
+  }
+  
+.cont-imgen {
+    max-width: 200px; /* Ajusta el tamaño máximo de la imagen según tus necesidades */
+    border: 1px solid #cccccc; /* Ajusta el grosor y el color del borde según tus preferencias */
+ }
+  

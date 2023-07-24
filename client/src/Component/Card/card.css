@@ -8,6 +8,9 @@
   margin: 0.5%;
 
   }
+  .style-cont:hover {
+    transform: scale(1.05); /* Al situar el cursor sobre .style-cont, lo agrandamos un 5% (1.05x) */
+  }
   
   .cont-imgen {
     display: flex;

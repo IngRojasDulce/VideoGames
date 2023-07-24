@@ -18,8 +18,10 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     platforms:{
-      type: DataTypes.STRING,
+      // type: DataTypes.STRING, //
+      type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: false,
+      defaultValue:[]
     },
     imagen:{
       type: DataTypes.STRING,

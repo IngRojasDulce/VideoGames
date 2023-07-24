@@ -1,5 +1,5 @@
 .nav-cont{
-    background-color: blueviolet;
+    background: linear-gradient(to bottom right, rgb(150, 150, 150), blueviolet);
     border: solid 1px blue;
     height: 3rem;
     display: flex;

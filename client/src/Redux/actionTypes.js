@@ -4,3 +4,7 @@ export const FILTRO = "FILTRO";
 export const SEARCH ="SEARCH";
 export const ORDER_NAME="ORDER_NAME";
 export const ORDER_RATING="ORDER_RATING";
+export const DETAIL ="DETAIL";
+export const CLEAN_DETAIL =  "CLEAN_DETAIL";
+export const FILTRO_GENRES = "FILTRO_GENRES";
+export const GET_GENRES = "GET_GENRES";

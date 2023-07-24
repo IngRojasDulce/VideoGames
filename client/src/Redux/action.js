@@ -1,5 +1,5 @@
 import axios from 'axios'
-import{ FILTRO, GET_VIDEOGAME, ORDER_NAME, ORDER_RATING, PAGINATE, SEARCH} from './actionTypes'
+import{ CLEAN_DETAIL, DETAIL, FILTRO, FILTRO_GENRES, GET_GENRES, GET_VIDEOGAME, ORDER_NAME, ORDER_RATING, PAGINATE, SEARCH} from './actionTypes'
 
 export function postVideogame(input){
     return async function(dispatch){
@@ -41,8 +41,27 @@ export function filtroPorOrden(orden){
             type: FILTRO,
             payload:orden
         })
-        
     };
+};
+export function filtroGenres(orden){
+    return async function(dispatch){
+        try {
+            dispatch({
+                type: FILTRO_GENRES,
+                payload:orden
+            })
+        } catch (error) {
+            alert(error.response.data.error)  
+        }
+       
+    };
+};
+export function getGenres(){
+    return async (dispatch) => {
+        console.log("estoy en aaction de get genres");
+        let response = await axios('http://localhost:3001/genres')
+        return dispatch({ type: GET_GENRES, payload: response.data })
+      }
 };
 export function search(input){
     return async function(dispatch){
@@ -73,3 +92,17 @@ export function search(input){
             })
         } 
         };
+        export const getDetail = (id) => {
+          
+            return async (dispatch) => {try {
+                const response = await axios(`http://localhost:3001/videogames/${id}`)
+                console.log("estoy en la action");
+                return dispatch({ type: DETAIL, payload: response.data })
+            } catch (error) {
+                alert(error.response.data.error)  
+            }
+                
+            }
+        };
+        export const cleanDetail = () => {
+            return { type:  CLEAN_DETAIL}}

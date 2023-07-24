@@ -1,4 +1,4 @@
-import{FILTRO, GET_VIDEOGAME,  ORDER_NAME, ORDER_RATING, PAGINATE, SEARCH} from"./actionTypes"
+import{CLEAN_DETAIL, DETAIL, FILTRO, FILTRO_GENRES, GET_GENRES, GET_VIDEOGAME,  ORDER_NAME, ORDER_RATING, PAGINATE, SEARCH} from"./actionTypes"
 
 let initialState={
     videogames:[],
@@ -6,7 +6,10 @@ let initialState={
     currenPage:0,
     videoPag: 0, //elimina
     videoFilter: [],
+    details: [],
     filter : false,
+    genres: [],
+    games: []
 
 };
 function rootReducer(state=initialState, action){
@@ -17,6 +20,10 @@ function rootReducer(state=initialState, action){
                 videogames: action.payload,
                 videogamesP: [...action.payload].splice(0,ITEMS_PER_PAGE)
             }
+         
+        case GET_GENRES: console.log({ ...state, genres: action.payload });
+            return { ...state, genres: action.payload }
+          
          
         case PAGINATE:
             
@@ -52,6 +59,13 @@ function rootReducer(state=initialState, action){
                 }
 
             }
+        case FILTRO_GENRES:
+           
+                const allGames = [...state.videogamesP];
+                let filteredGames = action.payload === 'all' ? allGames : allGames.filter(item => item.genres && item.genres.includes(action.payload));
+                console.log(filteredGames);
+                 if(!filteredGames.length) throw new Error('No hay juegos con ese género');
+                 return { ...state, videogamesP: filteredGames };
         case  SEARCH:
             console.log({...state, 
                 videogames: action.payload,
@@ -99,6 +113,12 @@ function rootReducer(state=initialState, action){
                  ...state,
                 videogamesP:[...ordeRating],
             }
+            case DETAIL:
+                return { ...state,
+                     details: action.payload }
+            case CLEAN_DETAIL:
+                return { ...state, details: [] }
+
         default:
             return{ ...state,   
         }

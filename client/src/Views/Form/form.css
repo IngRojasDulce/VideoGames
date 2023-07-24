@@ -1,16 +1,29 @@
-.form-cont{
-    background-color: aqua;
+body {
+    background-image: url('https://media.gq-magazine.co.uk/photos/645b5c3c8223a5c3801b8b26/16:9/w_2560%2Cc_limit/100-best-games-hp-b.jpg');
+    background-size: cover; /* Para ajustar la imagen al tamaño de la ventana del navegador */
+    background-repeat: no-repeat; /* Para evitar que la imagen se repita */
+  }
+.form-cont {
+    background: linear-gradient(to bottom, violet, white);
     border: solid 11% blueviolet;
     border-radius: 10%;
-    width: 30%;
-    display: flex;
+    width: fit-content; /* Ajustar al contenido */
     text-align: left;
-    justify-content: center;
-    align-items: baseline;
-    flex-direction: column;
-}
+    padding: 1%; /* Agregar un pequeño espaciado al contenido */
+  }
 
+  
 .form-input-cont{
     margin:1%;
 }
+p.error-message {
+    font-size: small;
+    color: red;
+  }
+input[type='submit'] {
+    width: 100%; /* Ajusta el ancho al 100% del contenedor */
+    padding: 10px; /* Añade un espaciado interno al botón */
+    box-sizing: border-box; /* Incluye el padding en el ancho total */
+    text-align: center; /* Alinea el texto (y contenido) al centro */
+  }
 

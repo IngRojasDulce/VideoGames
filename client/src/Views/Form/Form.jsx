@@ -14,7 +14,7 @@ const Form = () => {
     platforms:"",
     landingDate:"",
     rating:"",
-    genre:""
+    genres:""
   });
 
   const[errors,setErrors]=useState({
@@ -24,7 +24,7 @@ const Form = () => {
     platforms:"Plataforma requerida",
     landingDate:"ingrese fecha de lanzamiento",
     rating:"Ingrese el rating",
-    genre:"Seleccione el /los generos"
+    genres:"Seleccione el /los generos"
 
 
   });
@@ -53,9 +53,9 @@ const Form = () => {
       if(input.rating!=="")setErrors({...errors,rating:""})
       else setErrors({...errors, rating:"Ingrese el rating"})
     }
-    if(name==="genre"){
-      if(input.genre!=="")setErrors({...errors,genre:""})
-      else setErrors({...errors, genre:"Seleccione el /los generos"})
+    if(name==="genres"){
+      if(input.genres!=="")setErrors({...errors,genres:""})
+      else setErrors({...errors, genres:"Seleccione el /los generos"})
     }
   };
   const buttonDisabled = ()=>{
@@ -85,52 +85,54 @@ const Form = () => {
 
   
   return (
+    <div >
     <div className='form-cont'>
       <form onSubmit={handlerSubmit}>{console.log(errors)}
         <div className='form-input-cont'>
           <label >Nombre</label>
           <input type='text' name='name' onChange={handleChange}></input>
-          <p> {errors.name}</p>
+          <p className="error-message"> {errors.name}</p>
         </div>
         <div className='form-input-cont'>
           <label >Imagen</label>
           <input type='text' name='imagen' onChange={handleChange}/>
-          <p> {errors.imagen}</p>
+          <p className="error-message"> {errors.imagen}</p>
         </div>
 
         <div className='form-input-cont'>
           <label >Descripción</label>
           <input type='text'name='description' onChange={handleChange}/>
-          <p> {errors.description}</p>
+          <p className="error-message">{errors.imagen}</p>
         </div>
 
         <div className='form-input-cont'>
           <label >Plataformas</label>
           <input type='text' name='platforms' onChange={handleChange}/>
-          <p> {errors.platforms}</p>
+          <p className="error-message"> {errors.platforms}</p>
         </div>
 
         <div className='form-input-cont'>
           <label >Fecha de lanzamiento</label>
           <input type="date" name='landingDate' onChange={handleChange}/>
-          <p> {errors.landingDate}</p>
+          <p className="error-message"> {errors.landingDate}</p>
         </div>
 
         <div className='form-input-cont'>
           <label >Rating</label>
           <input type='text' name='rating' onChange={handleChange}/>
-          <p> {errors.rating}</p>
+          <p className="error-message"> {errors.rating}</p>
         </div>
 
         <div className='form-input-cont'>
           <label >Generos</label>
-          <input type='text' name='genre' onChange={handleChange}/>
-          <p> {errors.genre}</p>
+          <input type='text' name='genres' onChange={handleChange}/>
+          <p className="error-message"> {errors.genre}</p>
         </div>
         <input  type='submit' disabled={buttonDisabled()}/>
         
       </form>
 
+    </div>
     </div>
   )
 }

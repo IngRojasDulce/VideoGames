@@ -3,7 +3,7 @@ import React, { useState } from 'react'
  import { Cards} from '../../Component/Cards/Cards'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { filtroPorOrden, getVideogame,  orderByName,  orderByRating,  paginate, search } from '../../Redux/action'
+import { filtroGenres, filtroPorOrden, getGenres, getVideogame,  orderByName,  orderByRating,  paginate, search } from '../../Redux/action'
 
 const Home = () => {
   // const ITEMS_PAGE=15;
@@ -11,9 +11,11 @@ const Home = () => {
   const videogamesP = useSelector((state=>state.videogamesP))
   const filter = useSelector((state=>state.filter))
   const videoFilter=useSelector((state=> state.videoFilter))
+  const genres = useSelector((state) => state.genres)
   const dispatch = useDispatch();
     useEffect(()=>{ 
       dispatch(getVideogame());
+      dispatch(getGenres())
     //si coloco return es cuando quiero   quiero que mi componente muestre cuando se desmonte
     },[dispatch])
     
@@ -57,7 +59,9 @@ const Home = () => {
     const filtrado = (orden)=>{
       dispatch(filtroPorOrden(orden))
     }
-  
+    const filtradoGenre = (event)=>{
+      dispatch(filtroGenres(event.target.value))
+    }
     const handleSort = (event) => {
       event.preventDefault();
       const sortOption = event.target.value;
@@ -81,8 +85,20 @@ const Home = () => {
       <div>
       <div className='home_paginete'>
         <button onClick={pre_page}> Atras</button>
+        <button> {Math.ceil( videogamesP.length/15)}</button>
         <button onClick={next_page}>Adelante</button>
       </div>
+      <button onClick={() => filtrado("API")}>API</button>
+      
+      <button onClick={() => filtrado("BD")}>BD</button>
+      <div>
+          <select onChange={filtradoGenre}>
+                <option value='all'>Todos los Generos</option>
+                {genres.map((item,index)=>{
+                  return( <option key={index} value={item.name}> {item.name} </option>)
+                })}
+            </select>
+        </div>
       <div>
             <label>Buscar videojuego</label>
             <input

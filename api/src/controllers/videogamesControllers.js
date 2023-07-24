@@ -46,7 +46,20 @@ const nameApi= async(name)=>{
 const getAllVideogames = async(name) => {
   
   const allVideogamesApi =await videosgamesApi();
-  const allVideogamesBD=await Videogame.findAll();
+  const allVideogamesB=await Videogame.findAll({ include: { model: Genre, as: 'genres' , attributes: ["name"]} });
+  const allVideogamesBD = allVideogamesB.map((videoGame) => {
+    
+   
+    return {
+          ...videoGame.toJSON(),
+          
+         
+    genres: videoGame.genres.map((genre) => genre.name)
+        };
+      });
+    
+      
+     
   const allVideogames =[...allVideogamesBD, ... allVideogamesApi ];
   const nameA =await nameApi(name);
   
@@ -78,31 +91,33 @@ const getVideogamesBYid =async(id)=>{
 };
 
 const createVideogames = async (name, description, platforms, imagen, landingDate, rating, genres) => {
-  const newVideogame = await Videogame.create({ name, description, platforms, imagen, landingDate, rating });
-  let dbGenre=[]
-  genres.forEach(async(genre) => {
-    
-   
-     dbGenre = await Genre.findAll({ where: { name: genre } });
 
-     console.log(dbGenre);
-    if (dbGenre.length > 0) {
-      await newVideogame.addGenre(dbGenre);
-    } else {
-      throw new Error('El género ingresado no existe en la base de datos.')
-    }
-  })
-  const nuevo = {
-          name: newVideogame.name,
-          description: newVideogame.description,
-          platforms: newVideogame.platforms,
-          imagen: newVideogame.imagen,
-          landingDate: newVideogame.landingDate,
-          rating: newVideogame.rating,
-          genres : dbGenre?.map((elem)=>elem.name)
-  }
+//   let dbGenre=[]
+//   console.log(genres);
+//   genres.map(async(genre) => {
  
-  return nuevo;
+  const  dbGenre = await Genre.findAll({ where: { name: genres } });
+
+  const newVideogame = await Videogame.create({ name, description, platforms: [platforms], imagen, landingDate, rating , genres});
+//     if (dbGenre.length > 0) {
+  await newVideogame.addGenre(dbGenre);
+  await Promise.all(dbGenre)
+//     } else {
+//       throw new Error('El género ingresado no existe en la base de datos.')
+//     }
+//   })
+//   const nuevo = {
+//           name: newVideogame.name,
+//           description: newVideogame.description,
+//           platforms: newVideogame.platforms,
+//           imagen: newVideogame.imagen,
+//           landingDate: newVideogame.landingDate,
+//           rating: newVideogame.rating,
+//           genres : dbGenre.map((elem)=>elem.dataValues.name)
+//   }
+// //  console.log(nuevo);
+ console.log(newVideogame.genres);
+   return newVideogame;
 };
 
 
