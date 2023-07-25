@@ -47,6 +47,7 @@ const getAllVideogames = async(name) => {
   
   const allVideogamesApi =await videosgamesApi();
   const allVideogamesB=await Videogame.findAll({ include: { model: Genre, as: 'genres' , attributes: ["name"]} });
+  
   const allVideogamesBD = allVideogamesB.map((videoGame) => {
     
    
@@ -93,11 +94,11 @@ const getVideogamesBYid =async(id)=>{
 const createVideogames = async (name, description, platforms, imagen, landingDate, rating, genres) => {
 
 //   let dbGenre=[]
-//   console.log(genres);
+   console.log(genres);
 //   genres.map(async(genre) => {
  
   const  dbGenre = await Genre.findAll({ where: { name: genres } });
-
+console.log(dbGenre);
   const newVideogame = await Videogame.create({ name, description, platforms: [platforms], imagen, landingDate, rating , genres});
 //     if (dbGenre.length > 0) {
   await newVideogame.addGenre(dbGenre);
