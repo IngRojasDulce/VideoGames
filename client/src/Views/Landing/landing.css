@@ -1,15 +1,15 @@
 html, body {
-    height: 100%;
+    height: auto; 
     margin: 0;
   }
   
   .divStyle {
-    background-image: url('https://media.gq-magazine.co.uk/photos/645b5c3c8223a5c3801b8b26/16:9/w_2560%2Cc_limit/100-best-games-hp-b.jpg');
+    background-image: url('https://i.pinimg.com/originals/d5/12/ab/d512abb8ccd2d3cdcbc49fd0b92ca594.gif');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     width: 100%;
-    height: 100%;
+    height: 100vh; 
     display: flex;
     justify-content: center;
     align-items: center;

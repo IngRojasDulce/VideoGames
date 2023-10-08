@@ -1,9 +1,22 @@
-.home-cont{
+.home-cont {
+    
+   
     display: flex;
-    justify-content: center;
-    align-items: center;
+        justify-content: center;
+        align-items: center;
+        
+       
     flex-direction: column;
-}
-.home_paginete{
-    display: flex;
-}
+        
+       
+    background-image: url('https://img.freepik.com/fotos-premium/paisaje-fondo-videojuegos-montanas-bosques-pixeles-16-bits-ubicacion-naturaleza-juego-arcade-retro-arte-pixeles-colinas-montana-picos-nieve-cielo-nubes-arboles-hierba-lago_685067-3737.jpg?w=2000'); /* Reemplaza 'URL_DE_LA_IMAGEN' con la URL de la imagen que deseas usar como fondo */
+        background-size: cover; /* Para ajustar la imagen al tamaño de la ventana del navegador */
+        
+       
+    background-repeat: no-repeat; /* Para evitar que la imagen se repita */
+        min-height: 100vh; /* Asegura que el fondo cubra toda la altura visible del viewport */
+    }
+    
+    .home_paginete {
+        display: flex;
+    }

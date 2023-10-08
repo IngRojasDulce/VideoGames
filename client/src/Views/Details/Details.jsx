@@ -22,21 +22,32 @@ const Details = () => {
     <div className='de-main-cont'>
         <div className='de-cont'>
         
-        <div><h1>Nombre: {details.name}</h1></div>
-        <div className='cont-im'>
-          <img src={details.imagen} alt='' />
-          <div><h1>Id: {details?.id}</h1></div>
-          <p>Plataformas:</p>
+        <div>
+          <h1>Nombre: {details.name}</h1>
+        
+          
+          Id: {details?.id}</div>
+          Calificacion: {details.rating}
+          <br></br>
+          Plataformas:
             {details.platforms &&
               details.platforms.map((el) => {
                 return <p key={el}>{el}</p>;
               })}
-            <p>Fecha de lanzamiento: {details.released}</p>
-          <p>Calificacion: {details.rating}</p>
-          <div><p>Descripcion:</p>
-          <p dangerouslySetInnerHTML={{ __html: details.description }}></p></div>
+              
+            Fecha de lanzamiento: {details.landingDate}
+           
+            
+            <br></br>
+         
           
-        </div>
+          <div><p>Descripcion:</p>
+          <p dangerouslySetInnerHTML={{ __html: details.description }}></p>
+          </div>
+          <div className='img-detail'>
+              <img src={details.imagen} alt='' />
+          </div>
+        
       </div>
 
 

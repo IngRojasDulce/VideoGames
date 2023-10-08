@@ -1,7 +1,12 @@
 body {
-    background-image: url('https://media.gq-magazine.co.uk/photos/645b5c3c8223a5c3801b8b26/16:9/w_2560%2Cc_limit/100-best-games-hp-b.jpg');
+    background-image: url('https://a-static.besthdwallpaper.com/clan-wars-clash-royale-supercell-mobile-video-game-wallpaper-3554x1999-73077_53.jpg');
     background-size: cover; /* Para ajustar la imagen al tamaño de la ventana del navegador */
     background-repeat: no-repeat; /* Para evitar que la imagen se repita */
+    min-height: 100vh; /* Asegura que el fondo cubra toda la altura visible del viewport */
+    margin: 0;
+    width: 100%;
+
+    
   }
 .form-cont {
     background: linear-gradient(to bottom, violet, white);

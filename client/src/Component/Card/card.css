@@ -1,25 +1,63 @@
 .style-cont {
-    background: linear-gradient(to bottom right, rgb(200, 200, 200), rgb(100, 100, 100));
-  border: solid 2px black;
-  border-radius: 10px;
-  width: 30%;
-  height: 30%;
-  padding: 1;
-  margin: 0.5%;
+  background: linear-gradient(to bottom right, rgb(200, 200, 200), rgb(100, 100, 100));
+  
+ 
+border: solid 2px black;
+  
+ 
+border-radius: 10px;
+  
+ 
+width: 30%;
+  
+ 
+min-height: 230px; /* Tamaño fijo para el alto del contenedor */
+  
+ 
+padding: 5px; /* Ajustamos el padding para reducir el espacio alrededor del contenido */
 
-  }
-  .style-cont:hover {
-    transform: scale(1.05); /* Al situar el cursor sobre .style-cont, lo agrandamos un 5% (1.05x) */
-  }
+margin: 10px; /* Ajusta el margen según sea necesario */
+}
+
+.style-cont:hover {
   
-  .cont-imgen {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+ 
+transform: scale(1.05); /* Al situar el cursor sobre .style-cont, lo agrandamos un 5% (1.05x) */
+}
+
+.cont-imgen {
   
-  .cont-imgen img {
-    max-width: 100%;
-    max-height: 100%;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);}
+ 
+width: 100%; /* El contenedor de la imagen ocupa el 100% del ancho de .style-cont */
+  
+ 
+height: 60%; /* Altura relativa para que la imagen se ajuste correctamente */
+  
+ 
+display: flex;
+  
+ 
+justify-content: center;
+  
+ 
+align-items: center;
+  
+ 
+overflow: hidden; /* Ocultamos cualquier contenido que se salga del contenedor */
+}
+
+.cont-imgen img {
+  
+  object-fit: cover; /* Ajustamos la imagen para que se ajuste proporcionalmente dentro del contenedor */
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  width: 100px;
+  height: 100px;
+  
+}
+
+
+
+
+
+

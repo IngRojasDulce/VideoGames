@@ -9,7 +9,7 @@ export const Card= (props) => {
       </div>
       <div className=''>
         <p>Nombre  : {props.name}</p>
-        <p>Generos : {props.genres}</p>
+        <p>Generos : {props.genres.join(" , ")}</p>
         <div className='cont-imgen'>
           <img src={props.imagen} alt="Imagen" />
         </div>

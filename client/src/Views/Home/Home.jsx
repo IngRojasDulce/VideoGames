@@ -19,36 +19,15 @@ const Home = () => {
     //si coloco return es cuando quiero   quiero que mi componente muestre cuando se desmonte
     },[dispatch])
     
+    
+    
     const [searchTerm, setSearchTerm] = useState(''); // Estado para almacenar el valor del input
     
 
   const realizarBusqueda = () => {
     dispatch(search(searchTerm)); // Pasar el valor almacenado en searchTerm al dispatch
   };
-    // const [items,setItems]=useState([...allVideogames].splice(0,ITEMS_PAGE))
-    // const[currentPage, setCurrentPage]=useState(0);
-
-    // const adelante = ()=>{
-    //   const next_page=currentPage+1;
-    //   const firstIndex = next_page*ITEMS_PAGE;
-    //   if(firstIndex >= allVideogames.length) return 
-    //   setItems([...allVideogames].splice(firstIndex,ITEMS_PAGE))
-    //   setCurrentPage(next_page);
-     
-    // };
-    // useEffect(()=>{ 
-    //   setItems([...allVideogames].splice(0,ITEMS_PAGE))
     
-    // },[allVideogames])
-
-    // const atras = ()=>{
-    //   const pre_page=currentPage - 1;
-    //   const firstIndex = pre_page*ITEMS_PAGE;
-    //   if(pre_page <0 ) return
-    //   setItems([...allVideogames].splice(firstIndex, ITEMS_PAGE))
-    //   setCurrentPage(pre_page)
-  
-    // };
     
     const next_page = ()=>{
       dispatch(paginate("next"))
@@ -85,7 +64,7 @@ const Home = () => {
       <div>
       <div className='home_paginete'>
         <button onClick={pre_page}> Atras</button>
-        <button> {Math.ceil( videogamesP.length/15)}</button>
+        {/* <button> {Math.ceil( videogamesP.length/15)}</button> */}
         <button onClick={next_page}>Adelante</button>
       </div>
       <button onClick={() => filtrado("API")}>API</button>

@@ -8,8 +8,8 @@ export const Cards = ({allVideogames}) => {
     <div className='card-main-cont'>
       <h3>VIDEGAMES</h3>
       <div className='cards-cont'>
-
-        {allVideogames.map((game)=> <Card name={game.name} imagen={game.imagen}  genres={game.genres?.join(",")} id= {game.id}/>)}
+{console.log(allVideogames)}
+        {allVideogames.map((game)=> <Card name={game.name} imagen={game.imagen}  genres={game.genres} id= {game.id}/>)}
         
       </div>
 

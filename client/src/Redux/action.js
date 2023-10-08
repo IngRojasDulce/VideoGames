@@ -3,12 +3,12 @@ import{ CLEAN_DETAIL, DETAIL, FILTRO, FILTRO_GENRES, GET_GENRES, GET_VIDEOGAME, 
 
 export function postVideogame(input){
     return async function(dispatch){
-        try {
+        try {console.log(input)
             const response =await axios.post("http://localhost:3001/videogames/", input)
-            alert("Video-juego creado con exito")
-            
+            alert(`Video-juego ${response.data.name} ha sido creado con exito`)
+            console.log(response.data);
         } catch (error) {
-           alert("algo fallo al crear")
+           alert(error.response.data.error)
         }
     }
 };

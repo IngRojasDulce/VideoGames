@@ -3,7 +3,7 @@ import './landing.css'; // Importa el archivo CSS aquí
 
 const Landing = () => {
   return (
-    <div className='divStyle'>
+    <div className='divStyle'>welcome!!!
     
     </div>
   );

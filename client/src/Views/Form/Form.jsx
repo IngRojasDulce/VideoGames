@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import'./form.css'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import { postVideogame } from '../../Redux/action';
 
 
 const Form = () => {
   const dispatch = useDispatch();
-
+  const genres = useSelector((state) => state.genres)
   const [input , setinput] = useState({
     name:"",
     imagen:"",
@@ -24,7 +24,7 @@ const Form = () => {
     platforms:"Plataforma requerida",
     landingDate:"ingrese fecha de lanzamiento",
     rating:"Ingrese el rating",
-    genres:"Seleccione el /los generos"
+    // genres:"Seleccione el /los generos"
 
 
   });
@@ -50,13 +50,10 @@ const Form = () => {
       else setErrors({...errors, landingDate:"ingrese fecha de lanzamiento"})
     }
     if(name==="rating"){
-      if(input.rating!=="")setErrors({...errors,rating:""})
+      if(input.rating!=="" && !isNaN(input.rating) &&input.rating<7)setErrors({...errors,rating:""})
       else setErrors({...errors, rating:"Ingrese el rating"})
     }
-    if(name==="genres"){
-      if(input.genres!=="")setErrors({...errors,genres:""})
-      else setErrors({...errors, genres:"Seleccione el /los generos"})
-    }
+    
   };
   const buttonDisabled = ()=>{
     let disabled=true;
@@ -69,23 +66,34 @@ const Form = () => {
     }
     return disabled;
   };
+  
+
   const handleChange = (e)=>{
+    const { name, value } = e.target;
     setinput({
       ...input,
-      [e.target.name]: e.target.value
+      [name]: value
     })
-    validate({
+    validate({ 
       ...input,
-      [e.target.name]: e.target.value}, e.target.name)
+      [name]: value}, name)
+      if (name === "genres") {
+        const multiple =Array.from(e.target.selectedOptions, (option)=>option.value);
+        setinput({
+          ...input,
+          genres: multiple
+        });
+      }
   };
   const handlerSubmit =(event)=>{
+
     event.preventDefault();
     dispatch(postVideogame(input))
   }
 
   
   return (
-    <div >
+    <div className='form-img-fondo'>
     <div className='form-cont'>
       <form onSubmit={handlerSubmit}>{console.log(errors)}
         <div className='form-input-cont'>
@@ -125,8 +133,17 @@ const Form = () => {
 
         <div className='form-input-cont'>
           <label >Generos</label>
-          <input type='text' name='genres' onChange={handleChange}/>
-          <p className="error-message"> {errors.genre}</p>
+          {/* <input type='text' name='genres' onChange={handleChange}/> */}
+          <div>
+          <select onChange={handleChange} name='genres' >
+                <option value='all'>Todos los Generos</option>
+                {genres.map((item,index)=>{
+                  return( <option key={index} value={item.name}> {item.name} </option>)
+                })}
+            </select>
+        </div>
+
+          <p className="error-message"> {errors.genres}</p>
         </div>
         <input  type='submit' disabled={buttonDisabled()}/>
         
