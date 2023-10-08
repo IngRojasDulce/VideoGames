@@ -27,17 +27,14 @@ const getVideogamesIdHandler =async (req, res)=>{
         res.status(400).json({error: error.message});
     }
 };
-const createVideogamesHandler= async( req,res)=>{
-    const {name,description, platforms, imagen, landingDate,rating, genres }= req.body;
-    const response = await createVideogames(name,description, platforms, imagen, landingDate,rating, genres);
-        res.status(201).json(response);
+const createVideogamesHandler= async( req,res)=>{  
     try {
-        
+        const {name,description, platforms, imagen, landingDate,rating, genres }= req.body;
+        const response = await createVideogames(name,description, platforms, imagen, landingDate,rating, genres);
+        res.status(201).json(response);  
     } catch (error) {
         res.status(400).json({error: error.message});
-        
     }
-
 }
 
 module.exports= {
