@@ -43,7 +43,6 @@ function rootReducer(state=initialState, action){
             
             return{...state,
                 videogamesP : [...state.videogames].splice(firstIndex,ITEMS_PER_PAGE), 
-                
                 currenPage:action.payload === "next"? next_page:prev_page ,
                 
             }
@@ -79,8 +78,6 @@ function rootReducer(state=initialState, action){
                 }
                 return { ...state, videogamesP: filteredGames };
 
-
-
         case  SEARCH:
             return{...state, 
                 videogames: action.payload,
@@ -99,7 +96,6 @@ function rootReducer(state=initialState, action){
             return {
                 ...state,
                videogamesP:[...ordenado],
-           
             }
         case ORDER_RATING:
             let ordeRating;

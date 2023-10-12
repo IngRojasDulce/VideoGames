@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom/cjs/react-router-dom.min'
 export const Card= (props) => {
   return (
     <div className='style-cont'>
-      <div className=''>
+      {/* <div className=''>
         <h5>{}</h5>
-      </div>
+      </div> */}
       <div className=''>
         <p>Nombre  : {props.name}</p>
         <p>Generos : {props.genres.join(" , ")}</p>

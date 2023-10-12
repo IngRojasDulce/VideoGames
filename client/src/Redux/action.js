@@ -16,7 +16,6 @@ export function getVideogame(){
     return async function(dispatch){
         try {
             const response =await axios.get("http://localhost:3001/videogames/")
-           
             dispatch({
                 type:GET_VIDEOGAME,
                 payload:response.data
@@ -32,7 +31,6 @@ export function paginate(orden){
             type: PAGINATE,
             payload:orden
         })
-        
     };
 };
 export function filtroPorOrden(orden){
@@ -53,7 +51,6 @@ export function filtroGenres(orden){
         } catch (error) {
             alert(error.response.data.error)  
         }
-       
     };
 };
 export function getGenres(){
@@ -100,8 +97,7 @@ export function search(input){
                 return dispatch({ type: DETAIL, payload: response.data })
             } catch (error) {
                 alert(error.response.data.error)  
-            }
-                
+            } 
             }
         };
         export const cleanDetail = () => {
