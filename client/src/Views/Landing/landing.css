@@ -4,7 +4,7 @@ html, body {
   }
   
   .divStyle {
-    background-image: url('https://i.pinimg.com/originals/d5/12/ab/d512abb8ccd2d3cdcbc49fd0b92ca594.gif');
+    background-image: url('https://assets-v2.lottiefiles.com/a/0c0af800-1154-11ee-924b-2702112acdab/a8QH5CcHIz.gif');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -13,6 +13,25 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: rgb(43, 7, 7);
     font-size: 2rem;
   }
+  
+  .divGifCarga {
+    position: relative;
+    width: 200px; /* Ajusta el ancho deseado */
+    height: 200px; /* Ajusta la altura deseada */
+}
+
+.divGifCarga::before {
+    content: '';
+    background-image: url('https://assets-v2.lottiefiles.com/a/0c0af800-1154-11ee-924b-2702112acdab/a8QH5CcHIz.gif');
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
