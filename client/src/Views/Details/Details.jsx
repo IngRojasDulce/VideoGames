@@ -22,27 +22,21 @@ const Details = () => {
     <div className='de-main-cont'>
         <div className='de-cont'>
         
-        <div>
-          <h1>Nombre: {details.name}</h1>
-        
+          <div>
+            <h1>Nombre: {details.name}</h1>
+              <h5>Id:</h5> {details?.id}</div>
+          <div class="element">
+            <h5>Calificacion: </h5>{details.rating}</div>
+          <ul class ="custom-list">
+            <div class="element"><h5>Plataformas:</h5>
+                {details.platforms && details.platforms.map((el) => {return <li key={el}>{el}</li>;})}
+            </div><br/>
+          </ul> 
           
-          Id: {details?.id}</div>
-          Calificacion: {details.rating}
-          <br></br>
-          Plataformas:
-            {details.platforms &&
-              details.platforms.map((el) => {
-                return <p key={el}>{el}</p>;
-              })}
-              
-            Fecha de lanzamiento: {details.landingDate}
-           
-            
-            <br></br>
-         
-          
-          <div><p>Descripcion:</p>
-          <p dangerouslySetInnerHTML={{ __html: details.description }}></p>
+              <div><h5>Fecha de lanzamiento:</h5> {details.landingDate}
+              </div>
+          <div><h5>Descripcion:</h5>
+              <p dangerouslySetInnerHTML={{ __html: details.description }}></p>
           </div>
           <div className='img-detail'>
               <img src={details.imagen} alt='' />

@@ -4,7 +4,7 @@
 }
 
 .de-cont {
-    display: flex;
+    display: block;
     flex-wrap: wrap;
     justify-content: center;
     margin-bottom: 10px;
@@ -18,7 +18,25 @@
   }
 .img-detail img{
 max-width: 60%;
+}
+.element {
+  display: block;
+}
+.custom-list {
+  list-style: none;
+  padding: 0;
+}
 
+.custom-list > div {
+  margin: 0;
+}
 
+.custom-list ul {
+  margin: 0;
+}
+
+.custom-list li::before {
+  content: "•"; /* Usamos un punto como viñeta, puedes personalizarlo como desees */
+  margin-right: 5px; /* Espacio entre la viñeta y el texto */
 }
   
