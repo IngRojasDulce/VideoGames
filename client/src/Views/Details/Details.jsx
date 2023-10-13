@@ -22,20 +22,25 @@ const Details = () => {
     <div className='de-main-cont'>
         <div className='de-cont'>
         
-          <div>
+          <div className='alinear'>
             <h1>Nombre: {details.name}</h1>
-              <h5>Id:</h5> {details?.id}</div>
-          <div class="element">
-            <h5>Calificacion: </h5>{details.rating}</div>
+          </div>
+          
           <ul class ="custom-list">
             <div class="element"><h5>Plataformas:</h5>
                 {details.platforms && details.platforms.map((el) => {return <li key={el}>{el}</li>;})}
             </div><br/>
           </ul> 
           
-              <div><h5>Fecha de lanzamiento:</h5> {details.landingDate}
+              <div class ="alinear"><h5>Fecha de lanzamiento:  </h5> {details.landingDate}
               </div>
-          <div><h5>Descripcion:</h5>
+              <div className='alinear'>
+              <h5>Id:</h5> {details?.id}
+          </div>
+          <div class="element">
+            <h5>Calificacion: </h5>{details.rating}</div>
+            
+          <div><h5>Descripcion: </h5>
               <p dangerouslySetInnerHTML={{ __html: details.description }}></p>
           </div>
           <div className='img-detail'>
