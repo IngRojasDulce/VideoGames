@@ -29,11 +29,17 @@ const getVideogamesIdHandler =async (req, res)=>{
 };
 const createVideogamesHandler= async( req,res)=>{  
     try {
+
         const {name,description, platforms, imagen, landingDate,rating, genres }= req.body;
-        const response = await createVideogames(name,description, platforms, imagen, landingDate,rating, genres);
-        res.status(201).json(response);  
+        if(name && description && platforms && imagen && landingDate && rating && genres){// validacion de ingreso de datos
+            const response = await createVideogames(name,description, platforms, imagen, landingDate,rating, genres);
+           return res.status(201).json(response); 
+        }else{
+            return  res.status(400).end( "Por favor ingrese todos los datos obligatorios")
+        }
+        
     } catch (error) {
-        res.status(400).json({error: error.message});
+        res.status(500).json({error: error.message});
     }
 }
 
