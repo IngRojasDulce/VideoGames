@@ -10,7 +10,8 @@ let initialState={
     filter : false,
     genres: [],
     games: [],
-    number:1
+    number:1,
+    paginaA:0
 
 };
 function rootReducer(state=initialState, action){
@@ -27,13 +28,17 @@ function rootReducer(state=initialState, action){
           
          
         case PAGINATE:
-           
+           console.log("estoy en la paginate");
             const next_page = state.currenPage + 1;
             const prev_page = state.currenPage -1;
+            // const paginaA =next_page
+            
             const firstIndex = action.payload  ==="next"? next_page*ITEMS_PER_PAGE: prev_page*ITEMS_PER_PAGE;
            
             if(action.payload ==="next" && firstIndex >=state.videogames.length){return{...state}}
-            else if(action.payload === "prev" && prev_page <0){return{...state}}
+            else if(action.payload === "prev" && prev_page <0){
+                
+                return{...state}}
             
             if(state.filter){return{
                 ...state,
@@ -43,7 +48,7 @@ function rootReducer(state=initialState, action){
             
             return{...state,
                 videogamesP : [...state.videogames].splice(firstIndex,ITEMS_PER_PAGE), 
-                currenPage:action.payload === "next"? next_page:prev_page ,
+                currenPage:action.payload === "next"? next_page:prev_page ,next_page
                 
             }
         case FILTRO:
@@ -96,6 +101,7 @@ function rootReducer(state=initialState, action){
             return {
                 ...state,
                videogamesP:[...ordenado],
+
             }
         case ORDER_RATING:
             let ordeRating;

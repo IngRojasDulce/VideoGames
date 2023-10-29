@@ -4,7 +4,7 @@ import './landing.css'; // Importa el archivo CSS aquí
 const Landing = () => {
   return (
     <div className='divStyle '>
-      <h5>Welcome!!!</h5>
+      <h5 className='colorwelcome'>Welcome!!!</h5>
       <div className=''>
       
       </div>

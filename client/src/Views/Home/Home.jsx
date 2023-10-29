@@ -12,6 +12,7 @@ const Home = () => {
   const filter = useSelector((state=>state.filter))
   const videoFilter=useSelector((state=> state.videoFilter))
   const genres = useSelector((state) => state.genres)
+  const paginaActual = useSelector((state)=>state.paginaA)
   const dispatch = useDispatch();
     useEffect(()=>{ 
       dispatch(getVideogame());
@@ -63,7 +64,7 @@ const Home = () => {
       <h1>Video Juegos</h1>
       <div>
       <div className='home_paginete'>
-        <button onClick={pre_page}> Atras</button>
+        <button onClick={pre_page}> Atras</button>{console.log(paginaActual +"home con pagianado")}
         {/* <button> {Math.ceil( videogamesP.length/15)}</button> */}
         <button onClick={next_page}>Adelante</button>
       </div>

@@ -15,6 +15,7 @@ body {
     width: fit-content; /* Ajustar al contenido */
     text-align: left;
     padding: 1%; /* Agregar un pequeño espaciado al contenido */
+    display: inline-block;
   }
 
   

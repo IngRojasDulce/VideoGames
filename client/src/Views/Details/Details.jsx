@@ -40,8 +40,8 @@ const Details = () => {
           <div class="element">
             <h5>Calificacion: </h5>{details.rating}</div>
             
-          <div><h5>Descripcion: </h5>
-              <p dangerouslySetInnerHTML={{ __html: details.description }}></p>
+          <div className='parrafo'><h5>Descripcion: </h5>
+              <p   dangerouslySetInnerHTML={{ __html: details.description }}></p>
           </div>
           <div className='img-detail'>
               <img src={details.imagen} alt='' />
